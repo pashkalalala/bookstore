@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('status_id')->default(1)->constrained();
+            $table->foreignId('status_id')->constrained();
             $table->text('comment')->nullable();
             $table->timestamps();
         });
