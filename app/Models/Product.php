@@ -25,4 +25,12 @@ class Product extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function getImage()
+    {
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+        return '/storage/'.$this->image;
+    }
 }
