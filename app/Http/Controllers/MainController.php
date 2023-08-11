@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class MainController extends Controller
@@ -29,7 +32,7 @@ class MainController extends Controller
         return view('show', ['product' => $product]);
     }
 
-    public function newOrder($id)
+    public function showOrder($id)
     {
         $product = Product::where('id', $id)
             ->where('is_active', true)
@@ -40,5 +43,21 @@ class MainController extends Controller
         }
 
         return view('order', ['product' => $product]);
+    }
+
+    public function handleOrder(Request $request)
+    {
+        $validatedData = $request->validate([
+            'product_id' => 'required',
+            'comment' => 'required|min:10',
+        ]);
+        $order = Order::create([
+            'product_id' => $request->input('product_id'),
+            'user_id' => auth()->user()->id,
+            'status_id' => Status::where('name', 'new')->first()->id,
+            'comment' => $request->input('comment'),
+        ]);
+
+        return view('thanks', ['orderId' => $order->id]);
     }
 }

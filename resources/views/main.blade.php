@@ -34,7 +34,7 @@
                                     show details
                                 </button>
                             </a>
-                            <a href="{{ route('newOrder', ['id' => $product->id]) }}">
+                            <a href="{{ route('showOrder', ['id' => $product->id]) }}">
                                 <button
                                     class="text-purple-500 border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                     type="button">

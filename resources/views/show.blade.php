@@ -50,7 +50,7 @@
                     <div class="mt-6">
                         <h3 class="sr-only">Reviews</h3>
                     </div>
-                    <a href="{{ route('newOrder', ['id' => $product->id]) }}">
+                    <a href="{{ route('showOrder', ['id' => $product->id]) }}">
                         <button type="submit"
                                 class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-700 px-8 py-3 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
                             MAKE ORDER

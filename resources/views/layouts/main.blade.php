@@ -18,6 +18,7 @@
     <div class="bg-dark shadow">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between py-4">
+
                 <div>
                     <a href="{{ route('home') }}"><h1 class="font-bold text-3xl text-purple-600">bookstore</h1></a>
                 </div>
@@ -28,11 +29,17 @@
                 {{--</div>--}}
 
                 <div class="hidden sm:flex sm:items-center">
-                    <a href="{{ route('login') }}"
-                       class="text-gray-800 text-lg font-semibold hover:text-purple-600 mr-4">Sign in</a>
-                    <a href="{{ route('register') }}"
-                       class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign
-                        up</a>
+                    @auth
+                        <a href="{{ route('dashboard') }}"
+                           class="text-gray-800 text-lg font-semibold hover:text-purple-600 mr-4">Profile</a>
+                        <a href="{{ route('logout') }}"
+                           class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Log out</a>
+                    @else
+                        <a href="{{ route('login') }}"
+                           class="text-gray-800 text-lg font-semibold hover:text-purple-600 mr-4">Sign in</a>
+                        <a href="{{ route('register') }}"
+                           class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign up</a>
+                    @endauth
                 </div>
 
                 <div class="sm:hidden cursor-pointer">

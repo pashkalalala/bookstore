@@ -72,66 +72,41 @@
             <p class="text-xl font-medium">Payment Details</p>
             <p class="text-gray-400">Complete your order by providing your payment details.</p>
             <div class="">
-
+                <div>
+                    <h3 class="mt-4 mb-2 block text-sm font-medium">Name:</h3>
+                    <p class="text-sm text-gray-400">{{ auth()->user()->name }}</p>
+                </div>
+                <div>
+                    <h3 class="mt-4 mb-2 block text-sm font-medium">Email:</h3>
+                    <p class="text-sm text-gray-400">{{ auth()->user()->email }}</p>
+                </div>
+                <div>
+                    <h3 class="mt-4 mb-2 block text-sm font-medium">Phone:</h3>
+                    <p class="text-sm text-gray-400">{{ auth()->user()->phone }}</p>
+                </div>
                 {{--Form--}}
-                <form action="{{ route('home') }}" method="post">
-                    <label for="name" class="mt-4 mb-2 block text-sm font-medium">Name</label>
-                    <div class="relative">
-                        <input type="text" id="name" name="name"
-                               class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-gray-500 focus:ring-blue-500"
-                               placeholder="Your Name"/>
-                        <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <label for="email" class="mt-4 mb-2 block text-sm font-medium">Email</label>
-                    <div class="relative">
-                        <input type="text" id="email" name="email"
-                               class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-gary-500 focus:ring-blue-500"
-                               placeholder="your.email@gmail.com"/>
-                        <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <label for="phone" class="mt-4 mb-2 block text-sm font-medium">Phone</label>
-                    <div class="relative">
-                        <input type="text" id="phone" name="phone"
-                               class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-gray-500 focus:ring-blue-500"
-                               placeholder="Your Phone"/>
-                        <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <label for="message" class="mt-4 mb-2 block text-sm font-medium">Your message</label>
-                    <textarea id="message" name="message" rows="4"
+                <form action="{{ route('handleOrder') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <label for="comment" class="mt-4 mb-2 block text-sm font-medium">Your comment <span class="text-red-600 font-bold">*</span></label>
+                    <textarea id="comment" name="comment" rows="4"
                               class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               placeholder="Leave a comment..."></textarea>
-
+                    @if($errors->has('comment'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 mt-2 px-4 py-3 rounded relative" role="alert">
+                            {{ $errors->first('comment') }}
+                        </div>
+                    @endif
                     <!-- Total -->
                     <div class="mt-6 py-2 border-t flex items-center justify-between">
                         <p class="text-sm font-medium text-gray-900">Total</p>
-                        <p class="text-2xl font-semibold text-gray-900">$408.00</p>
+                        <p class="text-2xl font-semibold text-gray-900">${{ $product->price }}</p>
                     </div>
 
                     {{--<input type="submit" name="submit" value="Submit">--}}
                     <button type="submit"
                             class="mt-4 mb-8 w-full rounded-md bg-gray-700 hover:bg-gray-900 px-6 py-3 font-medium text-white">
-                        Place Order
+                        Make Order
                     </button>
                 </form>
             </div>
