@@ -62,7 +62,7 @@ class OrderResource extends Resource
                         'success' => static fn($state): bool => $state === 'delivered' || $state === 'processing',
                         'danger' => static fn($state): bool => $state === 'pending' || $state === 'ready',
                     ]),
-                Tables\Columns\TextColumn::make('comment'),
+                Tables\Columns\TextColumn::make('comment')->words(10),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
