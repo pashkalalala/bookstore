@@ -26,7 +26,7 @@ class MainController extends Controller
             ->first();
 
         if (!$product || !$product->is_active) {
-            return abort(404, 'Product not found');
+            return abort(404, 'Unfortunately, the product does not exist');
         }
 
         return view('show', ['product' => $product]);
@@ -39,7 +39,7 @@ class MainController extends Controller
             ->first();
 
         if (!$product || !$product->is_active) {
-            return abort(404, 'Product not found');
+            return abort(404, 'Unfortunately, it is not possible to make order for a non-existent product');
         }
 
         return view('order', ['product' => $product]);
