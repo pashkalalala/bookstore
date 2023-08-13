@@ -30,7 +30,7 @@
 
                 <div class="hidden sm:flex sm:items-center">
                     @auth
-                        <a href="{{ route('dashboard') }}"
+                        <a href="{{ route('profile.orders') }}"
                            class="text-gray-800 text-lg font-semibold hover:text-purple-600 mr-4">Profile</a>
                         <a href="{{ route('logout') }}"
                            class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Log out</a>
