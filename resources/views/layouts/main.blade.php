@@ -32,8 +32,14 @@
                     @auth
                         <a href="{{ route('profile.orders') }}"
                            class="text-gray-800 text-lg font-semibold hover:text-purple-600 mr-4">Profile</a>
-                        <a href="{{ route('logout') }}"
-                           class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Log out</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')"
+                                             onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                <span class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">{{ __('Log Out') }}</span>
+                            </x-dropdown-link>
+                        </form>
                     @else
                         <a href="{{ route('login') }}"
                            class="text-gray-800 text-lg font-semibold hover:text-purple-600 mr-4">Sign in</a>
@@ -52,13 +58,16 @@
 
             <div class="block sm:hidden bg-white border-t-2 py-2">
                 <div class="flex flex-col">
-                    {{--<a href="{{ route('home') }}" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mb-1">Home</a>--}}
-                    {{--<a href="{{ route('dashboard') }}" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mb-1">Dashboard</a>--}}
                     <div class="flex justify-between items-center border-t-2 pt-2">
-                        <a href="{{ route('login') }}" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Sign in</a>
-                        <a href="{{ route('register') }}"
-                           class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign
-                            up</a>
+                        @auth
+                            <a href="{{ route('profile.orders') }}"
+                               class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Profile</a>
+                            <a href="{{ route('logout') }}"
+                               class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Log out</a>
+                        @else
+                            <a href="{{ route('login') }}" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Sign in</a>
+                            <a href="{{ route('register') }}" class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign up</a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -92,7 +101,7 @@
                           clip-rule="evenodd"></path>
                 </svg>
             </a>
-            <a href="#" class="text-gray-400 hover:text-gray-500">
+            <a href="https://github.com/pashkalalala" class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">GitHub</span>
                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
