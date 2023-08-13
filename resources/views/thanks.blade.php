@@ -7,14 +7,16 @@
                 </path>
             </svg>
             <div class="text-center">
-                <h3 class="md:text-4xl text-base mb-6 text-gray-900 font-bold text-center">Thank you for your order.</h3>
+                <h3 class="md:text-4xl text-base mb-6 text-gray-900 font-bold text-center">Thank you for your
+                    order.</h3>
                 <p class="text-gray-800 text-xl my-2">Order number {{ $orderId }}, please wait in,</p>
                 <p class="text-gray-600 text-xl">the manager will contact you within 24 hours.</p>
                 <p class="text-purple-600 mt-10 mb-10 font-bold text-lg"> Have a great day!</p>
             </div>
         </div>
         <div class="pb-16 text-center">
-            <a href="{{ route('home') }}" class="px-12 rounded-md bg-black bg-gray-700 hover:bg-gray-900 text-white font-semibold py-3">
+            <a href="{{ route('home') }}"
+               class="px-12 rounded-md bg-black bg-gray-700 hover:bg-gray-900 text-white font-semibold py-3">
                 GO BACK
             </a>
         </div>

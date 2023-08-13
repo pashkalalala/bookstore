@@ -88,22 +88,23 @@
                 <form action="{{ route('handleOrder') }}" method="post">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <label for="comment" class="mt-4 mb-2 block text-sm font-medium">Your comment <span class="text-red-600 font-bold">*</span></label>
+                    <label for="comment" class="mt-4 mb-2 block text-sm font-medium">Your comment <span
+                            class="text-red-600 font-bold">*</span></label>
                     <textarea id="comment" name="comment" rows="4"
                               class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               placeholder="Leave a comment..."></textarea>
                     @if($errors->has('comment'))
-                        <div class="bg-red-100 border border-red-400 text-red-700 mt-2 px-4 py-3 rounded relative" role="alert">
+                        <div class="bg-red-100 border border-red-400 text-red-700 mt-2 px-4 py-3 rounded relative"
+                             role="alert">
                             {{ $errors->first('comment') }}
                         </div>
                     @endif
-                    <!-- Total -->
+                <!-- Total -->
                     <div class="mt-6 py-2 border-t flex items-center justify-between">
                         <p class="text-sm font-medium text-gray-900">Total</p>
                         <p class="text-2xl font-semibold text-gray-900">${{ $product->price }}</p>
                     </div>
 
-                    {{--<input type="submit" name="submit" value="Submit">--}}
                     <button type="submit"
                             class="mt-4 mb-8 w-full rounded-md bg-gray-700 hover:bg-gray-900 px-6 py-3 font-medium text-white">
                         Make Order

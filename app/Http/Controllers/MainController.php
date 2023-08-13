@@ -47,10 +47,11 @@ class MainController extends Controller
 
     public function handleOrder(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'product_id' => 'required',
             'comment' => 'required|min:10',
         ]);
+
         $order = Order::create([
             'product_id' => $request->input('product_id'),
             'user_id' => auth()->user()->id,

@@ -9,10 +9,8 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 
-
 </head>
 <body>
-
 
 <div class="bg-gray-100 font-sans w-full min-h-0 m-0">
     <div class="bg-dark shadow">
@@ -23,11 +21,6 @@
                     <a href="{{ route('home') }}"><h1 class="font-bold text-3xl text-purple-600">bookstore</h1></a>
                 </div>
 
-                {{--<div class="hidden sm:flex sm:items-center">--}}
-                {{--    <a href="{{ route('home') }}" class="text-gray-800 text-lg font-bold hover:text-purple-600 mr-6">Home</a>--}}
-                {{--    <a href="{{ route('dashboard') }}" class="text-gray-800 text-lg font-bold hover:text-purple-600 mr-6">Dashboard</a>--}}
-                {{--</div>--}}
-
                 <div class="hidden sm:flex sm:items-center">
                     @auth
                         <a href="{{ route('profile.orders') }}"
@@ -37,14 +30,16 @@
                             <x-dropdown-link :href="route('logout')"
                                              onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                <span class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">{{ __('Log Out') }}</span>
+                                <span
+                                    class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">{{ __('Log Out') }}</span>
                             </x-dropdown-link>
                         </form>
                     @else
                         <a href="{{ route('login') }}"
                            class="text-gray-800 text-lg font-semibold hover:text-purple-600 mr-4">Sign in</a>
                         <a href="{{ route('register') }}"
-                           class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign up</a>
+                           class="text-gray-800 text-lg font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign
+                            up</a>
                     @endauth
                 </div>
 
@@ -63,10 +58,14 @@
                             <a href="{{ route('profile.orders') }}"
                                class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Profile</a>
                             <a href="{{ route('logout') }}"
-                               class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Log out</a>
+                               class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Log
+                                out</a>
                         @else
-                            <a href="{{ route('login') }}" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Sign in</a>
-                            <a href="{{ route('register') }}" class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign up</a>
+                            <a href="{{ route('login') }}"
+                               class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Sign in</a>
+                            <a href="{{ route('register') }}"
+                               class="text-gray-800 text-sm font-semibold border px-4 py-1 rounded-lg hover:text-purple-600 hover:border-purple-600">Sign
+                                up</a>
                         @endauth
                     </div>
                 </div>
@@ -81,16 +80,6 @@
 <section class="bg-gray-100 mt-6">
     <div class="bg-gray-100  max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
         <nav class="flex flex-wrap justify-center -mx-5 -my-2">
-            {{--<div class="px-5 py-2">--}}
-            {{--    <a href="{{ route('home') }}" class="text-base font-bold leading-6 text-gray-500 hover:text-purple-600">--}}
-            {{--        Home--}}
-            {{--    </a>--}}
-            {{--</div>--}}
-            {{--<div class="px-5 py-2">--}}
-            {{--    <a href="{{ route('dashboard') }}" class="text-base font-bold leading-6 text-gray-500 hover:text-purple-600">--}}
-            {{--        Dashboard--}}
-            {{--    </a>--}}
-            {{--</div>--}}
         </nav>
         <div class="flex justify-center mt-8 space-x-6">
             <a href="#" class="text-gray-400 hover:text-gray-500">

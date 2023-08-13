@@ -14,11 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(ProductSeeder::class);
-        $this->call(StatusSeeder::class);
-
-        \App\Models\Order::factory(20)->create();
-
         /** @var User $adminUser */
         $adminUser = User::factory()->create([
             'email' => 'pasha@gmail.com',
@@ -29,5 +24,10 @@ class DatabaseSeeder extends Seeder
 
         $adminRole = Role::create(['name' => 'admin']);
         $adminUser->assignRole($adminRole);
+
+        $this->call(ProductSeeder::class);
+        $this->call(StatusSeeder::class);
+
+        \App\Models\Order::factory(20)->create();
     }
 }
