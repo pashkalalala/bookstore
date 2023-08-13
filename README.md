@@ -69,5 +69,17 @@ php artisan serve
 
 Your Laravel project is now running at http://127.0.0.1:8000
 
+8. **Admin Panel**
+
+You can log in as Administrator.
+
+```
+http//:127.0.0.1:8000/admin
+```
+Credentials:
+
+login - ```pasha@gmail.com```
+
+password - ```1111```
 
 
