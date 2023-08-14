@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Actions\CreateOrderAction;
+use App\Http\Requests\CreateOrderRequest;
 use App\Models\Product;
-use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -25,9 +25,7 @@ class MainController extends Controller
             ->where('is_active', true)
             ->first();
 
-        if (!$product || !$product->is_active) {
-            return abort(404, 'Unfortunately, the product does not exist');
-        }
+        $this->checkProductAvailability($product, 'Unfortunately, the product does not exist');
 
         return view('show', ['product' => $product]);
     }
@@ -38,27 +36,22 @@ class MainController extends Controller
             ->where('is_active', true)
             ->first();
 
-        if (!$product || !$product->is_active) {
-            return abort(404, 'Unfortunately, it is not possible to make order for a non-existent product');
-        }
+        $this->checkProductAvailability($product, 'Unfortunately, it is not possible to make order for a non-existent product');
 
         return view('order', ['product' => $product]);
     }
 
-    public function handleOrder(Request $request)
+    public function storeOrder(CreateOrderRequest $request, CreateOrderAction $createOrderAction)
     {
-        $request->validate([
-            'product_id' => 'required',
-            'comment' => 'required|min:10',
-        ]);
-
-        $order = Order::create([
-            'product_id' => $request->input('product_id'),
-            'user_id' => auth()->user()->id,
-            'status_id' => Status::where('name', 'new')->first()->id,
-            'comment' => $request->input('comment'),
-        ]);
+        $order = $createOrderAction($request);
 
         return view('thanks', ['orderId' => $order->id]);
+    }
+
+    public function checkProductAvailability($product, string $message)
+    {
+        if (!$product || !$product->is_active) {
+            abort(404, $message);
+        }
     }
 }

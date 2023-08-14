@@ -85,7 +85,7 @@
                     <p class="text-sm text-gray-400">{{ auth()->user()->phone }}</p>
                 </div>
                 {{--Form--}}
-                <form action="{{ route('handleOrder') }}" method="post">
+                <form action="{{ route('storeOrder') }}" method="post">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <label for="comment" class="mt-4 mb-2 block text-sm font-medium">Your comment <span

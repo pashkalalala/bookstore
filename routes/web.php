@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [ProfileController::class, 'orders'])->name('profile.orders');
     Route::get('/product/{id}/order', [MainController::class, 'showOrder'])->where('id', '[0-9]+')->name('showOrder');
-    Route::post('/product/order', [MainController::class, 'handleOrder'])->name('handleOrder');
+    Route::post('/product/order', [MainController::class, 'storeOrder'])->name('storeOrder');
 });
 
 require __DIR__.'/auth.php';
